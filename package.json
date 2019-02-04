@@ -1,0 +1,17 @@
+{
+	"name": "builder-trunk",
+	"version": "2.1.1",
+	"description": "Builder Trunk",
+	"main": "gulpfle.js",
+	"scripts": {
+		"installGM": "start node_modules/tempaw-functions/installers/GraphicsMagick-1.3.28-Q16-win64-dll.exe"
+	},
+	"repository": {
+		"type": "git",
+		"url": "http://products.git.devoffice.com/html-coding/builder-trunk.git"
+	},
+	"author": "ATOM",
+	"dependencies": {
+		"tempaw-functions": "2.3.5"
+	}
+}

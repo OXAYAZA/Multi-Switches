@@ -1,0 +1,109 @@
+extends _skeleton
+
+mixin switch
+	.switch&attributes( attributes )
+		.guide
+		.slider
+			block
+
+block page
+	.container.c1
+		.description Простые независимые переключатели
+		.inner
+			+switch( data-multi-switch='.c1 .t1' ) 1
+			+switch( data-multi-switch='.c1 .t2' ) 2
+			+switch( data-multi-switch='.c1 .t3' ) 3
+		.inner
+			.target.t1 1
+			.target.t2 2
+			.target.t3 3
+
+	.container.c2
+		.description Переключатели с несколькими целями
+		.inner
+			+switch( data-multi-switch='.c2 .t1' ) 1
+			+switch( data-multi-switch='.c2 .t2' ) 2
+		.inner
+			.target.t1 1
+			.target.t2 2
+			.target.t1 1
+			.target.t2 2
+
+	.container.c3
+		.description Переключатели с общими целями
+		.inner
+			+switch( data-multi-switch='.c3 .t1' ) 1
+			+switch( data-multi-switch='.c3 .t2' ) 2
+			+switch( data-multi-switch='.c3 .t1' ) 1
+			+switch( data-multi-switch='.c3 .t2' ) 2
+		.inner
+			.target.t1 1
+			.target.t2 2
+
+	.container.c4
+		.description Переключатели связанне посредством общих целей
+		.inner
+			+switch( data-multi-switch='.c4 .t1, .c4 .t2' ) 1|2
+			+switch( data-multi-switch='.c4 .t2, .c4 .t3' ) 2|3
+			+switch( data-multi-switch='.c4 .t3, .c4 .t4' ) 3|4
+		.inner
+			.target.t1 1
+			.target.t2 2
+			.target.t3 3
+			.target.t4 4
+
+	.container.c5.scope-orange
+		.description Переключатели с #[span.text-orange областью действия]
+		.inner
+			+switch( data-multi-switch='.c5 .t1', data-scope='.c5' ) 1
+			+switch( data-multi-switch='.c5 .t2', data-scope='.c5' ) 2
+			+switch( data-multi-switch='.c5 .t3', data-scope='.c5' ) 3
+		.inner
+			.target.t1 1
+			.target.t2 2
+			.target.t3 3
+			
+	.container.c6
+		.description Переключатели с #[span.text-cyan областью действия]
+		.inner
+			+switch( data-multi-switch='.c6 .t1', data-scope='.c6 .target' ) 1
+			+switch( data-multi-switch='.c6 .t2', data-scope='.c6 .target' ) 2
+			+switch( data-multi-switch='.c6 .t3', data-scope='.c6 .target' ) 3
+		.inner
+			.target.t1.scope-cyan 1
+			.target.t2.scope-cyan 2
+			.target.t3.scope-cyan 3
+
+	.container.c7
+		.description Переключатели #[span.text-dark изолированные] друг от друга
+		.inner
+			+switch( data-multi-switch='.c7 .t1', data-isolate='.c7 [data-isolate]' ) 1
+			+switch( data-multi-switch='.c7 .t2', data-isolate='.c7 [data-isolate]' ) 2
+			+switch( data-multi-switch='.c7 .t3', data-isolate='.c7 [data-isolate]' ) 3
+		.inner
+			.target.t1 1
+			.target.t2 2
+			.target.t3 2
+
+	.container.c8
+		.description Переключатели #[span.text-dark изолированные] друг от друга
+		.inner
+			+switch( data-multi-switch='.c8 .t1', data-isolate='.c8 [data-isolate]' ) 1
+			+switch( data-multi-switch='.c8 .t2' ) 2
+			+switch( data-multi-switch='.c8 .t2', data-isolate='.c8 [data-isolate]' ) 2
+		.inner
+			.target.t1 1
+			.target.t2 2
+
+	.container.c9.scope-white
+		.description Здесь все включено
+		.inner
+			+switch( data-multi-switch='.c9 .t1', data-scope='.c9', data-isolate='.c9 [data-isolate]' ) 1
+			+switch( data-multi-switch='.c9 .t2', data-scope='.c9 .scope-white', data-isolate='.c9 [data-isolate]' ) 2
+			+switch( data-multi-switch='.c9 .t3', data-scope='.c9 .scope-white' ) 3
+			+switch( data-multi-switch='.c9 .t4', data-scope='.c9' ) 4
+		.inner
+			.target.t1 1
+			.target.t2.scope-white 2
+			.target.t3.scope-white 3
+			.target.t4 4

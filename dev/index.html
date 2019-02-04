@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Multi Switches Demo</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="page">
+      <div class="container c1">
+        <div class="description">Простые независимые переключатели</div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c1 .t1">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c1 .t2">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c1 .t3">
+            <div class="guide"></div>
+            <div class="slider">3
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+          <div class="target t3">3</div>
+        </div>
+      </div>
+      <div class="container c2">
+        <div class="description">Переключатели с несколькими целями</div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c2 .t1">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c2 .t2">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+        </div>
+      </div>
+      <div class="container c3">
+        <div class="description">Переключатели с общими целями</div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c3 .t1">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c3 .t2">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c3 .t1">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c3 .t2">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+        </div>
+      </div>
+      <div class="container c4">
+        <div class="description">Переключатели связанне посредством общих целей</div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c4 .t1, .c4 .t2">
+            <div class="guide"></div>
+            <div class="slider">1|2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c4 .t2, .c4 .t3">
+            <div class="guide"></div>
+            <div class="slider">2|3
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c4 .t3, .c4 .t4">
+            <div class="guide"></div>
+            <div class="slider">3|4
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+          <div class="target t3">3</div>
+          <div class="target t4">4</div>
+        </div>
+      </div>
+      <div class="container c5 scope-orange">
+        <div class="description">Переключатели с <span class="text-orange">областью действия</span></div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c5 .t1" data-scope=".c5">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c5 .t2" data-scope=".c5">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c5 .t3" data-scope=".c5">
+            <div class="guide"></div>
+            <div class="slider">3
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+          <div class="target t3">3</div>
+        </div>
+      </div>
+      <div class="container c6">
+        <div class="description">Переключатели с <span class="text-cyan">областью действия</span></div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c6 .t1" data-scope=".c6 .target">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c6 .t2" data-scope=".c6 .target">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c6 .t3" data-scope=".c6 .target">
+            <div class="guide"></div>
+            <div class="slider">3
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1 scope-cyan">1</div>
+          <div class="target t2 scope-cyan">2</div>
+          <div class="target t3 scope-cyan">3</div>
+        </div>
+      </div>
+      <div class="container c7">
+        <div class="description">Переключатели <span class="text-dark">изолированные</span> друг от друга</div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c7 .t1" data-isolate=".c7 [data-isolate]">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c7 .t2" data-isolate=".c7 [data-isolate]">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c7 .t3" data-isolate=".c7 [data-isolate]">
+            <div class="guide"></div>
+            <div class="slider">3
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+          <div class="target t3">2</div>
+        </div>
+      </div>
+      <div class="container c8">
+        <div class="description">Переключатели <span class="text-dark">изолированные</span> друг от друга</div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c8 .t1" data-isolate=".c8 [data-isolate]">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c8 .t2">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c8 .t2" data-isolate=".c8 [data-isolate]">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2">2</div>
+        </div>
+      </div>
+      <div class="container c9 scope-white">
+        <div class="description">Здесь все включено</div>
+        <div class="inner">
+          <div class="switch" data-multi-switch=".c9 .t1" data-scope=".c9" data-isolate=".c9 [data-isolate]">
+            <div class="guide"></div>
+            <div class="slider">1
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c9 .t2" data-scope=".c9 .scope-white" data-isolate=".c9 [data-isolate]">
+            <div class="guide"></div>
+            <div class="slider">2
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c9 .t3" data-scope=".c9 .scope-white">
+            <div class="guide"></div>
+            <div class="slider">3
+            </div>
+          </div>
+          <div class="switch" data-multi-switch=".c9 .t4" data-scope=".c9">
+            <div class="guide"></div>
+            <div class="slider">4
+            </div>
+          </div>
+        </div>
+        <div class="inner">
+          <div class="target t1">1</div>
+          <div class="target t2 scope-white">2</div>
+          <div class="target t3 scope-white">3</div>
+          <div class="target t4">4</div>
+        </div>
+      </div>
+    </div>
+    <script src="js/MultiSwitches.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
