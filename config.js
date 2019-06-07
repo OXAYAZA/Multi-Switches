@@ -1,8 +1,4 @@
-const
-	fs     = require( 'fs' ),
-	path   = require( 'path' ),
-	glob   = require( 'glob' ),
-	action = require( 'tempaw-functions' ).action;
+const action = require( 'tempaw-functions' ).action;
 
 module.exports = {
 	livedemo: {
@@ -24,9 +20,9 @@ module.exports = {
 	sass: {
 		enable: true,
 		showTask: false,
-		watch: `dev/scss/**/*.scss`,
-		source: `dev/scss/!(_).scss`,
-		dest: `dev/css/`,
+		watch: `dev/**/*.scss`,
+		source: `dev/!(_).scss`,
+		dest: `dev/`,
 		options: {
 			outputStyle: 'expanded',
 			indentType: 'tab',
@@ -34,49 +30,16 @@ module.exports = {
 			linefeed: 'cr'
 		}
 	},
-	less: {
-		enable: false,
-		showTask: false,
-		watch: `dev/less/**/*.less`,
-		source: `dev/less/style.less`,
-		dest: `dev/css/`
-	},
 	pug: {
 		enable: true,
 		showTask: false,
-		watch: `dev/pug/**/*.pug`,
-		source: `dev/pug/!(_)*.pug`,
+		watch: `dev/**/*.pug`,
+		source: `dev/!(_)*.pug`,
 		dest: `dev/`,
 		options: {
 			pretty: true,
 			verbose: true,
 			emitty: true
-		}
-	},
-	jade: {
-		enable: false,
-		showTask: false,
-		watch: `dev/jade/**/*.jade`,
-		source: `dev/jade/pages/!(_)*.jade`,
-		dest: `dev/`,
-		options: {
-			pretty: true
-		}
-	},
-	babel: {
-		enable: false,
-		watch: `dev/babel/**/!(_)*.js`,
-		source: `dev/babel/!(_)*.js`,
-		dest: `dev/js/`,
-		options: {
-			presets: ['env'],
-			comments: false,
-			compact: true,
-			minified: true,
-			sourceType: 'script'
-		},
-		alternate: {
-			sourcemaps: false
 		}
 	},
 	autoprefixer: {
@@ -88,32 +51,19 @@ module.exports = {
 	},
 	watcher: {
 		enable: true,
-		watch: `dev/js/**/*.js`
-	},
-	htmlValidate: {
-		showTask: false,
-		source: `dev/*.html`,
-		report: `dev/`
-	},
-	jadeToPug: {
-		showTask: false,
-		source: `dev/jade/**/*.jade`,
-		dest: `dev/pug/`
-	},
-	lessToScss: {
-		showTask: false,
-		source: `dev/less/**/*.less`,
-		dest: `dev/scss/`
-	},
-	cache: {
-		showTask: false,
+		watch: `dev/!(_)*.js`
 	},
 	buildRules: {
 		'dist': [
 			action.clean({ src: `dist` }),
 			action.minifyJs({ src: `dev/js/MultiSwitches.js`, dest: `dist` }),
-			{ // Add comment
+			{ // TODO Add comment
 				execute: function( end ) {
+					const
+						fs = require( 'fs' ),
+						path = require( 'path' ),
+						glob = require( 'glob' );
+
 					let paths = glob.sync( `dev/js/MultiSwitches.js` );
 					paths.forEach( function( item ) {
 						let
