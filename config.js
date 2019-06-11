@@ -56,7 +56,7 @@ module.exports = {
 	buildRules: {
 		'dist': [
 			action.clean({ src: `dist` }),
-			action.minifyJs({ src: `dev/js/MultiSwitches.js`, dest: `dist` }),
+			action.minifyJs({ src: `dev/MultiSwitches.js`, dest: `dist` }),
 			{ // TODO Add comment
 				execute: function( end ) {
 					const
@@ -64,7 +64,7 @@ module.exports = {
 						path = require( 'path' ),
 						glob = require( 'glob' );
 
-					let paths = glob.sync( `dev/js/MultiSwitches.js` );
+					let paths = glob.sync( `dev/MultiSwitches.js` );
 					paths.forEach( function( item ) {
 						let
 							fname   = `dist/`+ path.basename( item, '.js' ) +`.min.js`,

@@ -1,10 +1,10 @@
 /**
  * @module       MultiSwitches
  * @version      2.1.0
- * @author       OXAYAZA {@link https://github.com/OXAYAZA}
+ * @author       OXAYAZA {@link https://oxayaza.page.link/github}
  * @license      CC BY-SA 4.0 {@link https://creativecommons.org/licenses/by-sa/4.0/}
  * @see          {@link https://codepen.io/OXAYAZA/pen/eRbYjV}
- * @see          {@link https://github.com/OXAYAZA/Multi-Switches}
+ * @see          {@link https://oxayaza.page.link/github_mswitches}
  * @see          {@link https://oxayaza.page.link/linkedin}
  * @description  Allows you to use multiple switches to switch class on the target,
  *               itself and other switches linked to the same target.
@@ -14,13 +14,13 @@ function MultiSwitch( options ) {
 	/**
 	 * Switch prototype
 	 * @param {object} options
-	 * @param {Element} options.node - элемент из которого будет создан переключатель
-	 * @param {NodeList|string} options.targets - переклюаемые элементы
-	 * @param {boolean} [options.state] - начальное состояние переключателя
-	 * @param {string} [options.class] - переключаемый класс
-	 * @param {string} [options.event] - событие для переключения
-	 * @param {NodeList|string} [options.scope] - 
-	 * @param {NodeList|string} [options.isolate] - 
+	 * @param {Element} options.node - the element from which the switch will be created
+	 * @param {NodeList|string} options.targets - switchable elements
+	 * @param {boolean} [options.state] - initial state of the switch
+	 * @param {string} [options.class] - switchable class
+	 * @param {string} [options.event] - event to initiate a switch
+	 * @param {NodeList|string} [options.scope] - elements indicating switch status save area, triggering a switching event on any element outside this area will reset the state of the switch
+	 * @param {NodeList|string} [options.isolate] - elements by clicking on which the state of the switch will reset
 	 * @returns {Switch}
 	 * @constructor
 	 */
@@ -58,7 +58,9 @@ function MultiSwitch( options ) {
 
 		// Assign an emitter event handler
 		this.node.addEventListener( `switch:${this.class}`, ( function( event ) {
-			if( event.emitter.multiSwitchTarget.groups[ this.class ].state !== this.state ) this.changeState( event.emitter.multiSwitchTarget.groups[ this.class ].state );
+			if( event.emitter.multiSwitchTarget.groups[ this.class ].state !== this.state ) {
+				this.changeState( event.emitter.multiSwitchTarget.groups[ this.class ].state );
+			}
 		}).bind( this ));
 
 		// Assign an switch event handler with scope check
@@ -186,7 +188,9 @@ function MultiSwitch( options ) {
 				class: params.class,
 				switches: [],
 				event: ( function( event ) {
-					if( event.emitter.multiSwitch.state !== this.state ) this.changeState( event.emitter.multiSwitch.state, event.emitter.multiSwitch.class );
+					if( event.emitter.multiSwitch.state !== this.state ) {
+						this.changeState( event.emitter.multiSwitch.state, event.emitter.multiSwitch.class );
+					}
 				}).bind( this )
 			};
 
