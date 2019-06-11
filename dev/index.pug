@@ -23,12 +23,12 @@ html( lang='en' )
 				.inner
 					+switch({ targets: '.c1 .t1' }) 1
 					+switch({ targets: '.c1 .t2' }) 2
-					+switch({ targets: '.c1 .t3' }) 1
+					+switch({ targets: '.c1 .t3' }) 3
 				.inner
 					.target.t1 1
 					.target.t2 2
 					.target.t3 3
-	//-
+
 			.container.c2
 				.description Переключатели с несколькими целями
 				.inner
@@ -52,67 +52,78 @@ html( lang='en' )
 					.target.t2 2
 
 			.container.c4
+				.description Переключатели с общими целями но разными классами
+				.inner
+					+switch({ targets: '.c4 .t1' }) 1
+					+switch({ targets: '.c4 .t1', class: 'enabled' }) 1
+					+switch({ targets: '.c4 .t2', class: 'enabled' }) 2
+					+switch({ targets: '.c4 .t2' }) 2
+				.inner
+					.target.t1 1
+					.target.t2 2
+
+			.container.c5
 				.description Переключатели связанне посредством общих целей
 				.inner
-					+switch({ targets: '.c4 .t1, .c4 .t2' }) 1|2
-					+switch({ targets: '.c4 .t2, .c4 .t3' }) 2|3
-					+switch({ targets: '.c4 .t3, .c4 .t4' }) 3|4
+					+switch({ targets: '.c5 .t1, .c5 .t2' }) 1|2
+					+switch({ targets: '.c5 .t2, .c5 .t3' }) 2|3
+					+switch({ targets: '.c5 .t3, .c5 .t4' }) 3|4
 				.inner
 					.target.t1 1
 					.target.t2 2
 					.target.t3 3
 					.target.t4 4
 
-			.container.c5.scope-orange
+			.container.c6.scope-orange
 				.description Переключатели с #[span.text-orange областью действия]
 				.inner
-					+switch({ targets: '.c5 .t1', scope: '.c5' }) 1
-					+switch({ targets: '.c5 .t2', scope: '.c5' }) 2
-					+switch({ targets: '.c5 .t3', scope: '.c5' }) 3
+					+switch({ targets: '.c6 .t1', scope: '.c6' }) 1
+					+switch({ targets: '.c6 .t2', scope: '.c6' }) 2
+					+switch({ targets: '.c6 .t3', scope: '.c6' }) 3
 				.inner
 					.target.t1 1
 					.target.t2 2
 					.target.t3 3
-					
-			.container.c6
+
+			.container.c7
 				.description Переключатели с #[span.text-cyan областью действия]
 				.inner
-					+switch({ targets: '.c6 .t1', scope: '.c6 .target' }) 1
-					+switch({ targets: '.c6 .t2', scope: '.c6 .target' }) 2
-					+switch({ targets: '.c6 .t3', scope: '.c6 .target' }) 3
+					+switch({ targets: '.c7 .t1', scope: '.c7 .target' }) 1
+					+switch({ targets: '.c7 .t2', scope: '.c7 .target' }) 2
+					+switch({ targets: '.c7 .t3', scope: '.c7 .target' }) 3
 				.inner
 					.target.t1.scope-cyan 1
 					.target.t2.scope-cyan 2
 					.target.t3.scope-cyan 3
 
-			.container.c7
+			.container.c8
 				.description Переключатели #[span.text-dark изолированные] друг от друга
 				.inner
-					+switch({ targets:  '.c7 .t1', isolate: '.c7 .isolated' }).isolated 1
-					+switch({ targets:  '.c7 .t2', isolate: '.c7 .isolated' }).isolated 2
-					+switch({ targets:  '.c7 .t3', isolate: '.c7 .isolated' }).isolated 3
+					+switch({ targets:  '.c8 .t1', isolate: '.c8 .isolated' }).isolated 1
+					+switch({ targets:  '.c8 .t2', isolate: '.c8 .isolated' }).isolated 2
+					+switch({ targets:  '.c8 .t3', isolate: '.c8 .isolated' }).isolated 3
 				.inner
 					.target.t1 1
 					.target.t2 2
 					.target.t3 2
 
-			.container.c8
+			.container.c9
 				.description Переключатели #[span.text-dark изолированные] друг от друга
 				.inner
-					+switch({ targets: '.c8 .t1', isolate: '.c8 .isolated' }).isolated 1
-					+switch({ targets: '.c8 .t2' }) 2
-					+switch({ targets: '.c8 .t2', isolate: '.c8 .isolated' }).isolated 2
+					+switch({ targets: '.c9 .t1', isolate: '.c9 .isolated' }).isolated 1
+					+switch({ targets: '.c9 .t2' }) 2
+					+switch({ targets: '.c9 .t2', isolate: '.c9 .isolated' }).isolated 2
 				.inner
 					.target.t1 1
 					.target.t2 2
 
-			.container.c9.scope-white
+			.container.c10.scope-white
 				.description Здесь все включено
 				.inner
-					+switch({ targets: '.c9 .t1', scope: '.c9', isolate: '.c9 .isolated' }).isolated 1
-					+switch({ targets: '.c9 .t2', scope: '.c9 .scope-white', isolate: '.c9 .isolated' }).isolated 2
-					+switch({ targets: '.c9 .t3', scope: '.c9 .scope-white' }) 3
-					+switch({ targets: '.c9 .t4', scope: '.c9' }) 4
+					+switch({ targets: '.c10 .t1', scope: '.c10', isolate: '.c10 .isolated' }).isolated 1
+					+switch({ targets: '.c10 .t2', scope: '.c10 .scope-white', isolate: '.c10 .isolated' }).isolated 2
+					+switch({ targets: '.c10 .t3', scope: '.c10 .scope-white' }) 3
+					+switch({ targets: '.c10 .t4', scope: '.c10' }) 4
 				.inner
 					.target.t1 1
 					.target.t2.scope-white 2
