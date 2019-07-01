@@ -1,6 +1,6 @@
 /**
  * @module       MultiSwitches
- * @version      2.1.0
+ * @version      2.2.0
  * @author       OXAYAZA {@link https://oxayaza.page.link/github}
  * @license      CC BY-SA 4.0 {@link https://creativecommons.org/licenses/by-sa/4.0/}
  * @see          {@link https://codepen.io/OXAYAZA/pen/eRbYjV}
@@ -51,31 +51,8 @@ function MultiSwitch( options ) {
 			target.multiSwitchTarget.updateGroup({ node: this.node, state: this.state, class: this.class });
 		}).bind( this ));
 
-		// Assign an switch event handler
-		this.node.addEventListener( this.event, ( function() {
-			this.changeState();
-		}).bind( this ));
-
-		// Assign an emitter event handler
-		this.node.addEventListener( `switch:${this.class}`, ( function( event ) {
-			if( event.emitter.multiSwitchTarget.groups[ this.class ].state !== this.state ) {
-				this.changeState( event.emitter.multiSwitchTarget.groups[ this.class ].state );
-			}
-		}).bind( this ));
-
-		// Assign an switch event handler with scope check
-		if ( this.scope && this.scope.length ) {
-			document.addEventListener( this.event, ( function ( event ) {
-				if( !this.checkScope( event.target ) && this.state ) this.changeState();
-			}).bind( this ));
-		}
-
-		// Assign an switch event handler with isolation check
-		if ( this.isolate && this.isolate.length ) {
-			document.addEventListener( this.event, ( function ( event ) {
-				if( this.checkIsolate( event.target ) && this.state ) this.changeState();
-			}).bind( this ));
-		}
+		// Assign event handlers
+		this.assignHandlers();
 
 		// Set initial state
 		this.changeState( this.state );
@@ -95,7 +72,74 @@ function MultiSwitch( options ) {
 		event: 'click',
 		targets: null,
 		scope: null,
-		isolate: null
+		isolate: null,
+		handlers: {
+			switch: null,
+			emitter: null,
+			scope: null,
+			isolate: null
+		}
+	};
+
+	/**
+	 * Assign switch event handlers
+	 */
+	Switch.prototype.assignHandlers = function () {
+		// Assign an switch event handler
+		this.handlers.switch = this.changeState.bind( this );
+		this.node.addEventListener( this.event, this.handlers.switch );
+
+		// Assign an emitter event handler
+		this.handlers.emitter = ( function( event ) {
+			if( event.emitter.multiSwitchTarget.groups[ this.class ].state !== this.state ) {
+				this.changeState( event.emitter.multiSwitchTarget.groups[ this.class ].state );
+			}
+		}).bind( this );
+
+		this.node.addEventListener( `switch:${this.class}`, this.handlers.emitter );
+
+		// Assign an switch event handler with scope check
+		if ( this.scope && this.scope.length ) {
+			this.handlers.scope = ( function ( event ) {
+				if( !this.checkScope( event.target ) && this.state ) this.changeState();
+			}).bind( this );
+
+			document.addEventListener( this.event, this.handlers.scope );
+		}
+
+		// Assign an switch event handler with isolation check
+		if ( this.isolate && this.isolate.length ) {
+			this.handlers.isolate = ( function ( event ) {
+				if( this.checkIsolate( event.target ) && this.state ) this.changeState();
+			}).bind( this );
+
+			document.addEventListener( this.event, this.handlers.isolate );
+		}
+	};
+
+	/**
+	 * Remove switch event handlers
+	 */
+	Switch.prototype.removeHandlers = function () {
+		if ( this.handlers.switch ) {
+			this.node.removeEventListener( this.event, this.handlers.switch );
+			this.handlers.switch = null;
+		}
+
+		if ( this.handlers.emitter ) {
+			this.node.removeEventListener( `switch:${this.class}`, this.handlers.emitter );
+			this.handlers.emitter = null;
+		}
+
+		if ( this.handlers.scope ) {
+			document.removeEventListener( this.event, this.handlers.scope );
+			this.handlers.scope = null;
+		}
+
+		if ( this.handlers.isolate ) {
+			document.removeEventListener( this.event, this.handlers.isolate );
+			this.handlers.isolate = null;
+		}
 	};
 
 	/**
