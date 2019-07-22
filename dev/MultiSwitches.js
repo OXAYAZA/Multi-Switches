@@ -1,6 +1,6 @@
 /**
  * @module       MultiSwitches
- * @version      2.2.0
+ * @version      2.2.1
  * @author       OXAYAZA {@link https://oxayaza.page.link/github}
  * @license      CC BY-SA 4.0 {@link https://creativecommons.org/licenses/by-sa/4.0/}
  * @see          {@link https://codepen.io/OXAYAZA/pen/eRbYjV}
@@ -29,8 +29,8 @@ function MultiSwitch( options ) {
 		if( !( options.node instanceof Element ) ) {
 			throw new Error( 'Switch element is required' );
 		}
-		if( !( options.targets instanceof NodeList ) && typeof( options.targets ) !== 'string') {
-			throw new Error( 'Target is required' );
+		if( !( options.targets instanceof NodeList || options.targets instanceof Array ) && typeof( options.targets ) !== 'string') {
+			throw new Error( 'Targets must be NodeList, Array or string' );
 		}
 
 		// Merging this, defaults and options
