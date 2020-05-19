@@ -1,6 +1,6 @@
 /**
  * @module       MultiSwitches
- * @version      2.2.1
+ * @version      2.2.2
  * @author       OXAYAZA {@link https://oxayaza.page.link/github}
  * @license      CC BY-SA 4.0 {@link https://creativecommons.org/licenses/by-sa/4.0/}
  * @see          {@link https://codepen.io/OXAYAZA/pen/eRbYjV}
@@ -57,7 +57,7 @@ function MultiSwitch( options ) {
 		// Set initial state
 		this.changeState( this.state );
 
-		return this;
+		this.node.dispatchEvent( new CustomEvent( 'switch:ready' ) );
 	}
 
 	/**
@@ -215,7 +215,7 @@ function MultiSwitch( options ) {
 		// Link the target instance to the element
 		this.node.multiSwitchTarget = this;
 
-		return this;
+		this.node.dispatchEvent( new CustomEvent( 'target:ready' ) );
 	}
 
 	/**

@@ -76,12 +76,6 @@ module.exports = {
 					end();
 				}
 			}
-		],
-		'util-backup': [
-			action.pack({
-				src: [ 'dev/**/*', '*.*' ], dest: 'versions/',
-				name( dateTime ) { return `backup-${dateTime[0]}-${dateTime[1]}.zip`; }
-			})
 		]
 	}
 };
