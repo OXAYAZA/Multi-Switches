@@ -1,6 +1,6 @@
 /**
  * @module       MultiSwitches
- * @version      2.2.3
+ * @version      2.2.4
  * @author       OXAYAZA {@link https://oxayaza.page.link/github}
  * @license      CC BY-SA 4.0 {@link https://creativecommons.org/licenses/by-sa/4.0/}
  * @see          {@link https://codepen.io/OXAYAZA/pen/eRbYjV}
@@ -56,9 +56,6 @@ function MultiSwitch( options ) {
 
 		// Set initial state
 		this.changeState( this.state );
-
-		// Dispatch switch ready event
-		this.node.dispatchEvent( new CustomEvent( 'switch:ready' ) );
 	}
 
 	/**
@@ -215,9 +212,6 @@ function MultiSwitch( options ) {
 
 		// Link the target instance to the element
 		this.node.multiSwitchTarget = this;
-
-		// Dispatch target ready event
-		this.node.dispatchEvent( new CustomEvent( 'target:ready' ) );
 	}
 
 	/**
@@ -230,11 +224,11 @@ function MultiSwitch( options ) {
 	Target.prototype.updateGroup = function ( params ) {
 		if ( !this.groups[ params.class ] ) {
 			this.groups[ params.class ] = {
-				state: params.state,
+				state: null,
 				class: params.class,
 				switches: [],
 				event: ( function( event ) {
-					if( event.emitter.multiSwitch.state !== this.state ) {
+					if( event.emitter.multiSwitch.state !== this.groups[ event.emitter.multiSwitch.class ].state ) {
 						this.changeState( event.emitter.multiSwitch.state, event.emitter.multiSwitch.class );
 					}
 				}).bind( this )
@@ -242,9 +236,6 @@ function MultiSwitch( options ) {
 
 			// Assign an emitter event handler
 			this.node.addEventListener( `switch:${params.class}`, this.groups[ params.class ].event );
-
-			// Dispatch group update event
-			this.node.dispatchEvent( new CustomEvent( 'target:updated' ) );
 		}
 
 		this.groups[ params.class ].switches.push( params.node );
@@ -270,6 +261,9 @@ function MultiSwitch( options ) {
 			event.emitter = this.node;
 			node.dispatchEvent( event );
 		}).bind( this ));
+
+		// Dispatch statechange event
+		this.node.dispatchEvent( new CustomEvent( 'target:statechange' ) );
 	};
 
 	return new Switch( options );
