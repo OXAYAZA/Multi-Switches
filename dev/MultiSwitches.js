@@ -1,6 +1,6 @@
 /**
  * @module       MultiSwitches
- * @version      2.2.2
+ * @version      2.2.3
  * @author       OXAYAZA {@link https://oxayaza.page.link/github}
  * @license      CC BY-SA 4.0 {@link https://creativecommons.org/licenses/by-sa/4.0/}
  * @see          {@link https://codepen.io/OXAYAZA/pen/eRbYjV}
@@ -57,6 +57,7 @@ function MultiSwitch( options ) {
 		// Set initial state
 		this.changeState( this.state );
 
+		// Dispatch switch ready event
 		this.node.dispatchEvent( new CustomEvent( 'switch:ready' ) );
 	}
 
@@ -215,6 +216,7 @@ function MultiSwitch( options ) {
 		// Link the target instance to the element
 		this.node.multiSwitchTarget = this;
 
+		// Dispatch target ready event
 		this.node.dispatchEvent( new CustomEvent( 'target:ready' ) );
 	}
 
@@ -240,6 +242,9 @@ function MultiSwitch( options ) {
 
 			// Assign an emitter event handler
 			this.node.addEventListener( `switch:${params.class}`, this.groups[ params.class ].event );
+
+			// Dispatch group update event
+			this.node.dispatchEvent( new CustomEvent( 'target:updated' ) );
 		}
 
 		this.groups[ params.class ].switches.push( params.node );
